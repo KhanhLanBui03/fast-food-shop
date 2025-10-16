@@ -1,7 +1,7 @@
 
 
 import { AllowNull, Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
-import { UserCoupon } from "./user_coupon.model";
+import { UserCoupon } from "./user-coupon.model";
 import { Address } from "./address.model";
 import { Carts } from "./carts.model";
 import { Order } from "./order.model";
@@ -10,7 +10,7 @@ export enum UserRoles {
     ADMIN = 'ADMIN',
     CUSTOMER = 'CUSTOMER',
 }
-@Table
+@Table({ tableName: 'users', timestamps: true })
 export class User extends Model<User> {
     @Column({
         allowNull: false,
@@ -64,7 +64,7 @@ export class User extends Model<User> {
 
     @HasMany(() => Order)
     orders: Order[];
-    
+
     @HasMany(() => Review)
     reviews: Review[];
 

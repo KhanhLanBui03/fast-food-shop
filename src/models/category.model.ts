@@ -1,7 +1,7 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Product } from './product.model';
 import { Ingredient } from './ingredient.model';
-import { table } from 'console';
+
 
 @Table({ tableName: 'categories', timestamps: true })
 export class Category extends Model<Category> {

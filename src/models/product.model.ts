@@ -1,12 +1,12 @@
 import { AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { Category } from './category.model';
-import { Product_variants } from './product_variants.model';
-import { Product_ingredient } from './product_ingredient.model';
-import { Order_item } from './order_item.model';
-import { Cart_item } from './cart_item.model';
+import { ProductVariants } from './product-variants.model';
+import { ProductIngredient } from './product-ingredient.model';
+import { OrderItem } from './order-item.model';
+import { CartItem } from './cart-item.model';
 import { Review } from './review.model';
 
-@Table
+@Table({ tableName: 'products', timestamps: true })
 export class Product extends Model<Product> {
 
     @Column({ type: DataType.STRING, allowNull: false })
@@ -36,16 +36,16 @@ export class Product extends Model<Product> {
 
     @BelongsTo(() => Category)
     category!: Category;
-    @HasMany(() => Product_variants)
-    product_variants?: Product_variants[];
+    @HasMany(() => ProductVariants)
+    product_variants?: ProductVariants[];
 
-    @HasMany(() => Product_ingredient)
-    product_ingredients?: Product_ingredient[];
-    @HasMany(() => Order_item)
-    orderItems: Order_item[];
+    @HasMany(() => ProductIngredient)
+    product_ingredients?: ProductIngredient[];
+    @HasMany(() => OrderItem)
+    orderItems: OrderItem[];
 
-    @HasMany(() => Cart_item)
-    cartItems: Cart_item[];
+    @HasMany(() => CartItem)
+    cartItems: CartItem[];
     @HasMany(() => Review)
     reviews: Review[];
 

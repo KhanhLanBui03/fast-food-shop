@@ -1,7 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { User } from './user.model';
 import { Address } from './address.model';
-import { Order_item } from './order_item.model';
+import { OrderItem } from './order-item.model';
 import { Review } from './review.model';
 export enum OrderStatus {
     PENDING = 'Đang chờ',
@@ -22,7 +22,7 @@ export enum PaymentMethod {
     ONLINE = 'Thanh toán Online',
 }
 
-@Table
+@Table({ tableName: 'orders', timestamps: true })
 export class Order extends Model<Order> {
     @Column({ type: DataType.STRING, allowNull: false })
     orderNumber!: string;
@@ -63,8 +63,8 @@ export class Order extends Model<Order> {
     addressId:number;
     @BelongsTo (() => Address)
     address:Address;
-    @HasMany(() => Order_item)
-    orderItems: Order_item[];
+    @HasMany(() => OrderItem)
+    orderItems: OrderItem[];
     @HasMany(() => Review)
     reviews: Review[];
 

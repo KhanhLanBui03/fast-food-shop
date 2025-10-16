@@ -4,7 +4,7 @@ import { Coupon } from './coupon.model';
 
 
 
-@Table
+@Table({ tableName: 'user_coupons', timestamps: true })
 export class UserCoupon extends Model<UserCoupon> {
   @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
   isUsed: boolean;

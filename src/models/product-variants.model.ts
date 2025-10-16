@@ -1,8 +1,8 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
-import { Product_ingredient } from './product_ingredient.model';
+import { ProductIngredient } from './product-ingredient.model';
 import { Product } from './product.model';
-import { Order_item } from './order_item.model';
-import { Cart_item } from './cart_item.model';
+import { OrderItem } from './order-item.model';
+import { CartItem } from './cart-item.model';
 export enum Size {
     SMALL = '15cm',
     MEDIUM = '20cm',
@@ -13,8 +13,8 @@ export enum Type {
     REGULAR = 'Thường',
     THICK = 'Dày',
 }
-@Table
-export class Product_variants extends Model<Product_variants> {
+@Table({ tableName: 'product_variants', timestamps: true })
+export class ProductVariants extends Model<ProductVariants> {
     @Column({ type: DataType.STRING, allowNull: false })
     name: string;
     @Column({
@@ -38,10 +38,10 @@ export class Product_variants extends Model<Product_variants> {
     productId: number;
     @BelongsTo(() => Product)
     product: Product;
-    @HasMany(() => Order_item)
-    orderItems: Order_item[];
-    @HasMany(() => Cart_item)
-    cartItems: Cart_item[];
+    @HasMany(() => OrderItem)
+    orderItems: OrderItem[];
+    @HasMany(() => CartItem)
+    cartItems: CartItem[];
 
 
 

@@ -1,9 +1,9 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Category } from './category.model';
-import { Product_ingredient } from './product_ingredient.model';
+import { ProductIngredient } from './product-ingredient.model';
 import { Cart } from './cart.model';
 
-@Table
+@Table({ tableName: 'ingredients', timestamps: true })
 export class Ingredient extends Model<Ingredient> {
     @Column({ type: DataType.STRING, allowNull: false })
     name: string;
@@ -22,8 +22,8 @@ export class Ingredient extends Model<Ingredient> {
     categoryId:number;
     @BelongsTo(() => Category)
     category:Category;
-    @HasMany(() => Product_ingredient)
-    product_ingredients?: Product_ingredient[];
+    @HasMany(() => ProductIngredient)
+    product_ingredients?: ProductIngredient[];
     @HasMany(() => Cart)
     cart?:Cart[];
 

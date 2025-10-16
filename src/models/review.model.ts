@@ -3,7 +3,7 @@ import { Order } from './order.model';
 import { Product } from './product.model';
 import { User } from './user.model';
 
-@Table
+@Table({ tableName: 'reviews', timestamps: true })
 export class Review extends Model<Review> {
     @Column({ type: DataType.INTEGER, allowNull: false })
     rating: number;

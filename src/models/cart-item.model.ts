@@ -1,11 +1,11 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Product } from './product.model';
-import { Product_variants } from './product_variants.model';
+import { Product_variants } from './product-variants.model';
 import { Carts } from './carts.model';
 import { Cart } from './cart.model';
 
-@Table
-export class Cart_item extends Model<Cart_item> {
+@Table({tableName: 'cart_items', timestamps: true })
+export class CartItem extends Model<CartItem> {
     @Column({ type: DataType.INTEGER, allowNull: false })
     quantity: number;
 

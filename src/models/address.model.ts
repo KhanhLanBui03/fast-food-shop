@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from '
 import { User } from './user.model';
 import { Order } from './order.model';
 
-@Table
+@Table({tableName:'addresses', timestamps:true})
 export class Address extends Model<Address> {
   @Column({ type: DataType.STRING, allowNull: true })
   street: string;

@@ -6,12 +6,12 @@ import {
     ForeignKey,
     BelongsTo,
 } from 'sequelize-typescript';
-import {  Order_item } from './order_item.model';
+import {  OrderItem } from './order-item.model';
 import { Ingredient } from './ingredient.model';
 
 @Table({ tableName: 'order_item_ingredients', timestamps: true })
 export class OrderItemIngredient extends Model<OrderItemIngredient> {
-    @ForeignKey(() => Order_item)
+    @ForeignKey(() => OrderItem)
     @Column({ type: DataType.INTEGER, allowNull: false })
     orderItemId!: number;
 
@@ -22,8 +22,8 @@ export class OrderItemIngredient extends Model<OrderItemIngredient> {
     @Column({ type: DataType.INTEGER, allowNull: true, defaultValue: 1 })
     quantity?: number;
 
-    @BelongsTo(() => Order_item)
-    orderItem?: Order_item;
+    @BelongsTo(() => OrderItem)
+    orderItem?: OrderItem;
 
     @BelongsTo(() => Ingredient)
     ingredient?: Ingredient;

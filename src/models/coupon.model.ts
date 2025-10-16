@@ -1,10 +1,10 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { UserCoupon } from './user_coupon.model';
+import { UserCoupon } from './user-coupon.model';
 export enum TypeCoupons {
     FIXED = 'FIXED',
     PERCENTAGE = 'PERCENTAGE',
 }
-@Table
+@Table({ tableName: 'coupons', timestamps: true })
 export class Coupon extends Model<Coupon> {
     @Column({ type: DataType.STRING, allowNull: false })
     code: string;

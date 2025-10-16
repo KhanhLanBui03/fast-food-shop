@@ -2,8 +2,8 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize
 import { Product } from './product.model';
 import { Ingredient } from './ingredient.model';
 
-@Table
-export class Product_ingredient extends Model<Product_ingredient> {
+@Table({ tableName: 'product_ingredients', timestamps: true })
+export class ProductIngredient extends Model<ProductIngredient> {
     @Column({ type: DataType.BOOLEAN, allowNull: false})
     isDefault!: boolean;
     @Column({ type: DataType.INTEGER, allowNull: true})
