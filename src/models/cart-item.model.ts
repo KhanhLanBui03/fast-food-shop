@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Product } from './product.model';
-import { Product_variants } from './product-variants.model';
+import { ProductVariants } from './product-variants.model';
 import { Carts } from './carts.model';
 import { Cart } from './cart.model';
 
@@ -15,11 +15,11 @@ export class CartItem extends Model<CartItem> {
     @BelongsTo(() => Product)
     product: Product
 
-    @ForeignKey(() => Product_variants)
+    @ForeignKey(() => ProductVariants)
     @Column({ type: DataType.INTEGER, allowNull: false })
     variantId: number;
-    @BelongsTo(() => Product_variants)
-    variant: Product_variants
+    @BelongsTo(() => ProductVariants)
+    variant: ProductVariants
 
     @ForeignKey(() => Carts)
     @Column({ type: DataType.INTEGER, allowNull: false })

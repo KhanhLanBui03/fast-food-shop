@@ -1,4 +1,12 @@
-import { AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+    BelongsTo,
+    Column,
+    DataType,
+    ForeignKey,
+    HasMany,
+    Model,
+    Table,
+} from 'sequelize-typescript';
 import { Category } from './category.model';
 import { ProductVariants } from './product-variants.model';
 import { ProductIngredient } from './product-ingredient.model';
@@ -8,7 +16,6 @@ import { Review } from './review.model';
 
 @Table({ tableName: 'products', timestamps: true })
 export class Product extends Model<Product> {
-
     @Column({ type: DataType.STRING, allowNull: false })
     name!: string;
 
@@ -24,29 +31,32 @@ export class Product extends Model<Product> {
     @Column({ type: DataType.STRING, allowNull: false })
     imageUrl!: string;
 
-    @Column({ type: DataType.BOOLEAN, defaultValue: true, allowNull: true })
-    isActive?: boolean;
+    @Column({ type: DataType.BOOLEAN, defaultValue: true })
+    isActive!: boolean;
 
-    @Column({ type: DataType.BOOLEAN, defaultValue: false, allowNull: true })
-    isFeatured?: boolean;
+    @Column({ type: DataType.BOOLEAN, defaultValue: false })
+    isFeatured!: boolean;
 
     @ForeignKey(() => Category)
     @Column({ type: DataType.INTEGER, allowNull: false })
     categoryId!: number;
 
-    @BelongsTo(() => Category)
+    // 💡 alias riêng: 'category' (đừng dùng 'productCategory')
+    @BelongsTo(() => Category, { as: 'category' })
     category!: Category;
+
     @HasMany(() => ProductVariants)
-    product_variants?: ProductVariants[];
+    productVariants?: ProductVariants[];
 
     @HasMany(() => ProductIngredient)
-    product_ingredients?: ProductIngredient[];
+    productIngredients?: ProductIngredient[];
+
     @HasMany(() => OrderItem)
-    orderItems: OrderItem[];
+    orderItems?: OrderItem[];
 
     @HasMany(() => CartItem)
-    cartItems: CartItem[];
-    @HasMany(() => Review)
-    reviews: Review[];
+    cartItems?: CartItem[];
 
+    @HasMany(() => Review)
+    reviews?: Review[];
 }

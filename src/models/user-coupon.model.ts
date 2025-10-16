@@ -19,7 +19,7 @@ export class UserCoupon extends Model<UserCoupon> {
   userId: number;
   @BelongsTo(() => User)
   user: User;
-  @ForeignKey(() => User)
+  @ForeignKey(() => Coupon)
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
