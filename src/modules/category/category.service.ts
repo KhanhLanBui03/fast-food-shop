@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Category } from 'src/models/category.model';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 
 @Injectable()
@@ -10,8 +12,8 @@ export class CategoryService {
         private readonly categoryModel: typeof Category
     ){}
 
-    async createCategory(data: Partial<Category>): Promise<Category> {
-        const category = await this.categoryModel.create(data as any);
+    async createCategory(createCategoryDto: CreateCategoryDto){
+        const category = await this.categoryModel.create(createCategoryDto as any);
         return category;
     }
 
@@ -22,12 +24,12 @@ export class CategoryService {
     async findCategoryById(id: number): Promise<Category | null> {
         return this.categoryModel.findByPk(id);
     }
-    async updateCategory (id:number, data: Partial<Category>): Promise<Category | null> {
+    async updateCategory (id:number, updateCategoryDto: UpdateCategoryDto): Promise<Category | null> {
         const category = await this.categoryModel.findByPk(id);
         if (!category) {
             return null;
         }
-        return await category.update(data);
+        return await category.update(updateCategoryDto);
     }
 
     async deleteCategory (id:number): Promise<boolean> {
